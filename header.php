@@ -40,7 +40,13 @@
 	
 </head>
 
-<body <?php body_class('main'); ?>>
+<?php if (is_single()){
+	$body_cls = "post";	
+}else{
+	$body_cls = "main";
+}?>
+
+<body <?php body_class($body_cls); ?>>
     <div id="fb-root"></div>
     <div id="wrapper">
         <div class="page">
@@ -60,7 +66,7 @@
                     </ul>
                     <div class="clear"></div>
                     <div class="logo">
-                        <a href="index.html"><img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt=""></a>
+                        <a href="<?php bloginfo('url'); ?>/"><img src="<?php echo get_template_directory_uri(); ?>/images/heartslogogrey.png" alt="" height="100" width="100"></a>
                     </div>
                 </nav>
 

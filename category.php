@@ -1,7 +1,8 @@
 <?php get_header(); ?>
  <div class="bg_white">
   <div class="padd_content">
-		<h1>Category Archives: Featured</h1>
+		<h1>Category Archives: <?php single_cat_title( '', true ); ?></h1>
+		<?php single_cat_title( '', true ); ?>
                     <div>
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                         <div class=" post col_2 rec_cnt  gall_item" id="post-<?php the_ID(); ?>">

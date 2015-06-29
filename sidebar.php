@@ -3,55 +3,59 @@
     
                         <section class="section_instagram center carousel">
                             <h3 class="title">- POPULAR -</h3>
-
-                            <div class="window">
+						        <div class="window">
                                 <ul class="clr">
 
-                                    <li>
-                                        <div class="right-block-inner">
+								<?php 
+									$popularpost = new WP_Query( array( 'posts_per_page' => 4, 'meta_key' => 'wpb_post_views_count', 'orderby' => 'meta_value_num', 'order' => 'DESC'  ) );
+									while ( $popularpost->have_posts() ) : $popularpost->the_post();
+								?>
+									<li>
+										<div class="right-block-inner">
+											<?php if ( has_post_thumbnail() ) : ?>
+												<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+												<?php the_post_thumbnail(); ?>
+												</a>
+											<?php endif; ?> 
+											<h4 class="dots right-title"><a href="<?php the_permalink(); ?>"><span><?php the_title(); ?> </span></a></h4>
+											<div class="read-more">
+												<a href="<?php the_permalink(); ?>">Read more</a>
+											</div>
+										</div>
+									</li>
+									<?php
+										endwhile;
+									?>
+								
+								
+								
+								
+								<?php /*
+									$args = array( 'numberposts' => 4, 'order'=> 'ASC', 'orderby' => 'title' );
+									$postslist = get_posts( $args );
+									foreach ($postslist as $post) :  setup_postdata($post); ?> 
+																	
+											<li>
+												<div class="right-block-inner">
+													<?php if ( has_post_thumbnail() ) : ?>
+														<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+														<?php the_post_thumbnail(); ?>
+														</a>
+													<?php endif; ?> 
+													<h4 class="dots right-title"><a href="<?php the_permalink(); ?>"><span><?php the_title(); ?> </span></a></h4>
+													<div class="read-more">
+														<a href="<?php the_permalink(); ?>">Read more</a>
+													</div>
+												</div>
+											</li>
+									<?php endforeach; */?>
+																	
+								
+								
+					
 
-                                            <a href="paris-hilton-showcases-several-high-fashion-looks-at-this-year-s-cannes.html"><img alt="Paris Hilton Keeps It ‘Real’ During Recent TV Appearance." src="<?php echo get_template_directory_uri(); ?>/images/36/parisonreal_600x314.jpg" /></a>
-                                            <h4 class="dots right-title"><a href="paris-hilton-showcases-several-high-fashion-looks-at-this-year-s-cannes.html"><span>Paris Hilton Keeps It ‘Real’ During Recent TV Appearance.</span></a></h4>
-                                            <div class="read-more">
-                                                <a href="paris-hilton-keeps-it-real--during-recent-tv-appearance-.html">Read more</a>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="right-block-inner">
-
-                                            <a href="paris-hilton-showcases-several-high-fashion-looks-at-this-year-s-cannes.html"><img alt="Pretty Paris On The Pink Carpet In Seoul" src="<?php echo get_template_directory_uri(); ?>/images/33/PARISINSEOULFEATURE_600x314.jpg" /></a>
-                                            <h4 class="dots right-title"><a href="paris-hilton-showcases-several-high-fashion-looks-at-this-year-s-cannes.html"><span>Pretty Paris On The Pink Carpet In Seoul</span></a></h4>
-                                            <div class="read-more">
-                                                <a href="pretty-paris-on-the-pink-carpet-in-seoul-.html">Read more</a>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="right-block-inner">
-
-                                            <a href="paris-hilton-showcases-several-high-fashion-looks-at-this-year-s-cannes.html"><img alt="Nicky Hilton Gets Pranked On BBC's Hilarious Segment, Call Or Delete!" src="<?php echo get_template_directory_uri(); ?>/images/59/maxresdefaultParis_600x314.jpg" /></a>
-                                            <h4 class="dots right-title"><a href="paris-hilton-showcases-several-high-fashion-looks-at-this-year-s-cannes.html"><span>Nicky Hilton Gets Pranked On BBC's Hilarious Segment, Call Or Delete!</span></a></h4>
-                                            <div class="read-more">
-                                                <a href="nicky-hilton-gets-pranked-on-bbc-s-hilarious-segment-call-or-delete-.html">Read more</a>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="right-block-inner">
-
-                                            <a href="paris-hilton-showcases-several-high-fashion-looks-at-this-year-s-cannes.html"><img alt=" Paris Really CAN Do It All! Her Hot New Music Video Has The Industry Talking" src="<?php echo get_template_directory_uri(); ?>/images/31/Paris_600x314.jpg" /></a>
-                                            <h4 class="dots right-title"><a href="paris-hilton-showcases-several-high-fashion-looks-at-this-year-s-cannes.html"><span> Paris Really CAN Do It All! Her Hot New Music Video Has The Industry Talking</span></a></h4>
-                                            <div class="read-more">
-                                                <a href="paris-really-can-do-it-all-her-hot-new-music-video-has-the-industry-talking.html">Read more</a>
-                                            </div>
-                                        </div>
-                                    </li>
-
-
+                                   
+                                    
                                 </ul>
                             </div>
                         </section>

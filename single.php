@@ -1,8 +1,13 @@
 <?php get_header(); ?>
 <section class="bg_white2">
                 <div class="padd_content">
-	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-	 <?php get_sidebar('right-sidebar'); ?>
+				<?php get_sidebar('right-sidebar'); ?>
+				
+				
+				
+				
+	<?php if (have_posts()) : while (have_posts(wpb_get_post_views(get_the_ID()))) : the_post(); ?>
+	 
 		<div class=" post">
                         <div>
                             <h1><?php the_title(); ?></h1>
@@ -53,72 +58,6 @@
                                         <div class="fb-like" data-href="//www.facebook.com/" data-width="20" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
                                     </div>
                                 </div>
-
-                                <section>
-                                    <h2>Paris Hilton – De Grisogono Party at the 68th Annual Cannes Film Festival</h2>
-
-                                    <figure>
-                                        <img src="<?php echo get_template_directory_uri(); ?>/images/38/pariscannes2_443x627.jpg" alt="Paris Hilton – De Grisogono Party at the 68th Annual Cannes Film Festival">
-                                    </figure>
-
-                                </section>
-
-                                <p class="caption"></p>
-                                <a href="../celebmafia.com/wp-content/uploads/2015/05/paris-hilton-de-grisogono-party-at-the-68th-annual-cannes-film-festival_4.jpg" target="_blank">Celebmafia</a>
-
-
-                                <section>
-                                    <h2>Paris Hilton – "Inside Out" Premiere at 2015 Cannes Film Festival</h2>
-
-                                    <figure>
-                                        <img src="images/38/pariscannes12_666x1000.jpg" alt="Paris Hilton – " Inside Out " Premiere at 2015 Cannes Film Festival">
-                                    </figure>
-
-                                </section>
-
-                                <p class="caption"></p>
-                                <a href="../www.aceshowbiz.com/images/wennpic/paris-hilton-68th-annual-cannes-film-festival-inside-out-premiere-01.jpg" target="_blank">Ace Showbiz</a>
-
-
-                                <section>
-                                    <h2>Paris Hilton – The Heart Fund Party at the 68th Annual Cannes Film Festival</h2>
-
-                                    <figure>
-                                        <img src="<?php echo get_template_directory_uri(); ?>/images/38/pariscannes6_800x1199.jpg" alt="Paris Hilton – The Heart Fund Party at the 68th Annual Cannes Film Festival">
-                                    </figure>
-
-                                </section>
-
-                                <p class="caption"></p>
-                                <a href="../celebmafia.com/wp-content/uploads/2015/05/paris-hilton-the-heart-fund-party-at-the-68th-annual-cannes-film-festival_1.jpg" target="_blank">Celebmafia</a>
-
-
-                                <section>
-                                    <h2>Paris Hilton at Galaxy Yacht – 68th Annual Cannes Film Festival</h2>
-
-                                    <figure>
-                                        <img src="<?php echo get_template_directory_uri(); ?>/images/38/pariscannes1_800x1179.jpg" alt="Paris Hilton at Galaxy Yacht – 68th Annual Cannes Film Festival">
-                                    </figure>
-
-                                </section>
-
-                                <p class="caption"></p>
-                                <a href="../celebmafia.com/wp-content/uploads/2015/05/paris-hilton-at-galaxy-yacht-68th-annual-cannes-film-festival_2.jpg" target="_blank">Celebmafia</a>
-
-
-                                <section>
-                                    <h2>Paris Hilton – VIP Room JW Marriott : Day 3 – 2015 Cannes Film Festival</h2>
-
-                                    <figure>
-                                        <img src="<?php echo get_template_directory_uri(); ?>/images/38/pariscannes5_800x1072.jpg" alt="Paris Hilton – VIP Room JW Marriott : Day 3 – 2015 Cannes Film Festival">
-                                    </figure>
-
-                                </section>
-
-                                <p class="caption"></p>
-                                <a href="../celebmafia.com/wp-content/uploads/2015/05/paris-hilton-vip-room-jw-marriott-day-3-2015-cannes-film-festival_16.jpg" target="_blank">Celebmafia</a>
-
-
 
 
                                 <div class="social_share_btn social_share_btn-bot">
