@@ -4455,7 +4455,7 @@ function(e) {
         "use strict";
         return Swiper
     }),
-    function(e) {
+    function(e) { //Youtube video start
         "use strict";
         "function" == typeof define && define.amd ? define(["jquery"], e) : "undefined" != typeof exports ? module.exports = e(require("jquery")) : e(jQuery)
     }(function(e) {
@@ -4555,19 +4555,5 @@ $(document).ready(function() {
         }, !1))
     }(document, "readyState", "add", "remove", "EventListener", "DOMContentLoaded");
 	
-	
-	
-	
-		$('#slider').nivoSlider({
-			effect: 'random',               // slider effects 'fold, fade, sliceDown, sliceDownLeft, sliceUp, sliceUpLeft, sliceUpDown, sliceUpDownLeft, slideInRight, slideInLeft'
-			animSpeed: 500,                 // transition speed
-			pauseTime: 3000,                // how long each slide will show
-			directionNav: true,             // Next & Prev navigation
-			controlNav: true,               // 1,2,3... navigation
-			pauseOnHover: true,             // stop animation while hovering
-			manualAdvance: false,           // force manual transitions
-			prevText: 'Prev',               // Prev directionNav text
-			nextText: 'Next',               // Next directionNav text
-			randomStart: false,             // start on a random slide
-		});
+
 	

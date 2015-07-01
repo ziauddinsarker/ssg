@@ -10,7 +10,49 @@
 	 
 		<div class=" post">
                         <div>
+						<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+								<div id="player"></div>
+
+								<script>
+									var tag = document.createElement('script');
+
+									tag.src = "https://www.youtube.com/iframe_api";
+									var firstScriptTag = document.getElementsByTagName('script')[0];
+									firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+									var player;
+									function onYouTubeIframeAPIReady() {
+										player = new YT.Player('player', { // "player" id of youtube player container where video comes using youtube iframe api.
+											height: '390',
+											width: '640',
+											videoId: 'M7lc1UVf-VE',
+											events: {
+												'onReady': onPlayerReady, // on ready event below callback function "onPlayerReady" will be called.
+											}
+										});
+									}
+
+									function onPlayerReady(event) { // as youtube player will ready
+										$('#play_vid').click(function() {  // it will wait to click on overlay/image
+											event.target.playVideo();  // as overlay image clicked video plays.
+										});
+									}
+
+									$(document).ready(function() {
+										$('#player').hide(); // on document ready youtube player will be hiden.
+										$('#play_vid').click(function() {  // as user click on overlay image.
+											$('#player').show();    // player will be visible to user 
+											$('#play_vid').hide(); // and overlay image will be hidden.
+										});
+									});
+								</script>
+
+								<div id="player"></div> <!-- Youtube player container -->
+								<img id="play_vid" src="YOUR_IMAGE_PATH" /> <!-- overlay image that comes in front of youtube video. when user click on this, image will be hidden and video plays using youtube api.-->
+
+							
                             <h1><?php the_title(); ?></h1>
+							<?php next_post_link( '<strong>%link</strong>' ); ?>
                             <div class="clear"></div>
 
                             <div class="social_content">
@@ -47,9 +89,7 @@
 
                                     <?php the_content(); ?>
                                 </div>
-								
-								
-								
+											
                                 <div class="social_share_btn social_share_btn-top">
                                     <a class="btn-facebook" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>">
                                         <i class="fa fa-facebook-official fa-lg btn-upp"></i><span>SHARE THIS VIDEO</span>
@@ -59,42 +99,38 @@
                                         <div class="fb-like" data-href="//www.facebook.com/" data-width="20" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
                                     </div>
                                 </div>
-							<div class="flexslider">
-								<ul class="slides">
-									<?php revconcept_get_images("$post->ID"); ?>
-								</ul>
-							</div><!--end flexslider-->
-								 <?php egs_display(); ?> 
+								
+								<section>
+									<?php
+									// Get the video URL and put it in the $video variable
+									$videoID = get_post_meta($post->ID, 'video', true);
+									// Check if there is in fact a video URL
+									if ($videoID) {
+										echo '<figure class="embed">';
+										// Echo the embed code via oEmbed
+										echo wp_oembed_get( $videoID ); 
+										echo '</figure>';
+									}
+									?>
+								</section>
+					
+
+
+								
+								
                                 <div class="social_share_btn social_share_btn-bot">
                                     <a class="btn-facebook" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>">
                                         <i class="fa fa-facebook-official fa-lg btn-upp"></i><span>SHARE THIS VIDEO</span>
                                     </a>
-                                    <a type="button" class="btn_sml btn_lrg" href="paris-really-can-do-it-all-her-hot-new-music-video-has-the-industry-talking.html">next</a>
+                                   
+									<?php
+									$next_post = get_adjacent_post(false, '', false);
+										if(!empty($next_post)) {
+										echo '<a type="button" class="btn_sml btn_lrg" href="' . get_permalink($next_post->ID) . '" title="' . $next_post->post_title . '"><strong>Next Article</strong></a>'; }
+									?>
                                 </div>
                             </div>
-							<?php 
-							/* // array with parameters
-								$args = array(
-									'post_parent' => $post->ID,
-									'post_type' => 'attachment',
-									'orderby' => 'menu_order', // you can also sort images by date or be name
-									'order' => 'ASC',
-									'numberposts' => 5, // number of images (slides)
-									'post_mime_type' => 'image'
-								);
-								if ( $images = get_children( $args ) ) {
-									// if there are no images in post, don't display anything
-									echo '<div id="slider_wrap" style="width:640px; height:480px;"><div id="slider">';
-									// don't forget to add you own values of width (640) and height (480)
-											foreach( $images as $image ) {
-												echo wp_get_attachment_image( $image->ID, 'mrslider' );
-											}
-									echo '</div></div>'; 
-								}
-										 */					
-							?>
-							
-							
+								
 
                             <div class="postbox">
                                
@@ -195,11 +231,20 @@
                         <a href="#" class="replay"><img src="<?php echo get_template_directory_uri(); ?>/images/replay.png" /> Play again!</a>
                     </li>
                     <li>
-                        <a href="paris-really-can-do-it-all-her-hot-new-music-video-has-the-industry-talking.html"><img src="<?php echo get_template_directory_uri(); ?>/images/next.png" /> Next story!</a>
+                       
+						<?php
+						$next_post = get_adjacent_post(false, '', false);
+							if(!empty($next_post)) {
+							echo '<a  href="' . get_permalink($next_post->ID) . '" title="' . $next_post->post_title . '"><img src="' . get_template_directory_uri() . '/images/next.png" />Next story!</a>'; }
+						?>
                     </li>
+					
+					
+					
+					
                 </ul>
                 <div class="cf"></div>
-                <a class="btn-facebook" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://blog.parishilton.com/paris-hilton-showcases-several-high-fashion-looks-at-this-year-s-cannes">
+                <a class="btn-facebook" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>">
                     <i class="fa fa-facebook-official fa-lg btn-upp"></i><span>SHARE THIS VIDEO</span>
                 </a>
                 <svg>

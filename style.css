@@ -3097,3 +3097,11 @@ div.ad {
     display: block !important;
     text-align: center;
 }
+
+
+.videoContainer > iframe {
+    height: 483px;
+    width: 100%;
+}
+
+

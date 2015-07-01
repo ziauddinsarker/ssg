@@ -60,10 +60,10 @@
     </div>
     <!--End of Wrapper-->
 	
-    <script async src="<?php echo get_template_directory_uri(); ?>/js/main.js"></script>
+    <script async src="<?php echo get_template_directory_uri(); ?>/js/mains.js"></script>
 	
 	<script type="text/javascript">
-		$(window).load(function() {	
+		/* $(window).load(function() {	
 			$('#slides').nivoSlider({
 				effect: 'random',               // slider effects 'fold, fade, sliceDown, sliceDownLeft, sliceUp, sliceUpLeft, sliceUpDown, sliceUpDownLeft, slideInRight, slideInLeft'
 				animSpeed: 500,                 // transition speed
@@ -77,8 +77,61 @@
 				randomStart: false            // start on a random slide
 			});
 		});
-
+ */
 		</script>
+
+		
+		<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    
+
+			
+
+    <script>
+     /* // Inject YouTube API script
+		var tag = document.createElement('script');
+		tag.src = "//www.youtube.com/player_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		
+		var player;
+
+		function onYouTubePlayerAPIReady() {
+		  // create the global player from the specific iframe (#video)
+		  player = new YT.Player('yt0', {
+			events: {
+			  // call this function when player is ready to use
+			  'onReady': onPlayerReady
+			}
+		  });
+		}
+		
+		function onPlayerReady(event) {
+  
+		  // bind events
+		  var playButton = document.getElementById("play-button");
+		  playButton.addEventListener("click", function() {
+			player.playVideo();
+		  });
+		  
+		  var pauseButton = document.getElementById("pause-button");
+		  pauseButton.addEventListener("click", function() {
+			player.pauseVideo();
+		  });
+		  
+		}
+
+ */
+ 
+ 
+ </script>
+ 
+
+
+
+
+
+
+
 </body>
 
 </html>
