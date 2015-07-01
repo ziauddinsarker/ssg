@@ -30,6 +30,7 @@
 	</title>
 	
 	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.ico">
+	
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 	
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
@@ -55,13 +56,13 @@
                 <nav class="header_nav">
                     <ul class="social_header">
                         <li>
-                            <a href="http://www.facebook.com" target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
+                            <a href="http://www.facebook.com/sammisweetheart" target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
                         </li>
                         <li>
-                            <a href="http://twitter.com" target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
+                            <a href="http://twitter.com/SammiSweetheart" target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
                         </li>
                         <li>
-                            <a href="http://instagram.com" target="_blank"><i class="fa fa-instagram fa-lg"></i></a>
+                            <a href="http://instagram.com/sammisweetheart" target="_blank"><i class="fa fa-instagram fa-lg"></i></a>
                         </li>
                     </ul>
                     <div class="clear"></div>

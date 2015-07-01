@@ -33,6 +33,7 @@
 				
                 <div class="latest-posts">
                     <div>
+					
                         <h3 class="title">- LATEST POSTS -</h3>
 						
 						

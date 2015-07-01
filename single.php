@@ -6,7 +6,7 @@
 				
 				
 				
-	<?php if (have_posts()) : while (have_posts(wpb_get_post_views(get_the_ID()))) : the_post(); ?>
+	<?php if (have_posts()) : while (have_posts()) : the_post(wpb_get_post_views(get_the_ID())); ?>
 	 
 		<div class=" post">
                         <div>
@@ -43,12 +43,13 @@
                             <div class="section_social">
                                 <div>
 
-                                    <div class="gAd">
-                                        <script type="text/JavaScript">var OmniPid = '3106';var OmniRC = '';var OmniAd = null;var OmniHttp = null;OmniHttp = new XMLHttpRequest();OmniHttp.open( "GET.html", "http://serve.omni-ads.com/?pid=" + OmniPid + "&rc=" + OmniRC, false );OmniHttp.send( null );OmniAd = OmniHttp.responseText;document.write(OmniAd);</script>
-                                    </div>
+                                
 
                                     <?php the_content(); ?>
                                 </div>
+								
+								
+								
                                 <div class="social_share_btn social_share_btn-top">
                                     <a class="btn-facebook" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>">
                                         <i class="fa fa-facebook-official fa-lg btn-upp"></i><span>SHARE THIS VIDEO</span>
@@ -58,160 +59,130 @@
                                         <div class="fb-like" data-href="//www.facebook.com/" data-width="20" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
                                     </div>
                                 </div>
-
-
+							<div class="flexslider">
+								<ul class="slides">
+									<?php revconcept_get_images("$post->ID"); ?>
+								</ul>
+							</div><!--end flexslider-->
+								 <?php egs_display(); ?> 
                                 <div class="social_share_btn social_share_btn-bot">
-                                    <a class="btn-facebook" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://blog.parishilton.com/paris-hilton-showcases-several-high-fashion-looks-at-this-year-s-cannes">
+                                    <a class="btn-facebook" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>">
                                         <i class="fa fa-facebook-official fa-lg btn-upp"></i><span>SHARE THIS VIDEO</span>
                                     </a>
                                     <a type="button" class="btn_sml btn_lrg" href="paris-really-can-do-it-all-her-hot-new-music-video-has-the-industry-talking.html">next</a>
                                 </div>
                             </div>
+							<?php 
+							/* // array with parameters
+								$args = array(
+									'post_parent' => $post->ID,
+									'post_type' => 'attachment',
+									'orderby' => 'menu_order', // you can also sort images by date or be name
+									'order' => 'ASC',
+									'numberposts' => 5, // number of images (slides)
+									'post_mime_type' => 'image'
+								);
+								if ( $images = get_children( $args ) ) {
+									// if there are no images in post, don't display anything
+									echo '<div id="slider_wrap" style="width:640px; height:480px;"><div id="slider">';
+									// don't forget to add you own values of width (640) and height (480)
+											foreach( $images as $image ) {
+												echo wp_get_attachment_image( $image->ID, 'mrslider' );
+											}
+									echo '</div></div>'; 
+								}
+										 */					
+							?>
+							
+							
 
                             <div class="postbox">
-
-                                <script type="text/JavaScript">var OmniPid = '3107';var OmniRC = '';var OmniAd = null;var OmniHttp = null;OmniHttp = new XMLHttpRequest();OmniHttp.open( "GET.html", "http://serve.omni-ads.com/?pid=" + OmniPid + "&rc=" + OmniRC, false );OmniHttp.send( null );OmniAd = OmniHttp.responseText;document.write(OmniAd);</script>
-
-                                <div class="fb-comments" data-href="http://blog.parishilton.com/paris-hilton-showcases-several-high-fashion-looks-at-this-year-s-cannes" data-numposts="5" data-colorscheme="light" data-width="100%"></div>
+                               
+                                <div class="fb-comments" data-href="<?php the_permalink(); ?>" data-numposts="5" data-colorscheme="light" data-width="100%"></div>
 
                             </div>
+							
+							
+							<?php endwhile; endif; ?>
                             <div class="clear"></div>
                             <h3 class="title">- RECOMMENDED -</h3>
                             <div>
-
-                                <div class="col_2 rec_cnt  gall_item">
+							
+							<?php
+								$tags = wp_get_post_tags($post->ID);
+								if ($tags) {
+								$tag_ids = array();
+								foreach($tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
+								 
+								$args=array(
+								'tag__in' => $tag_ids,
+								'post__not_in' => array($post->ID),
+								'showposts'=>4,  // Number of related posts that will be shown.
+								'caller_get_posts'=>1
+								);
+								 
+								$my_query = new wp_query($args);
+								if( $my_query->have_posts() ) {
+								//echo '<div id="relatedposts"><h3>Related Posts</h3><ul>';
+								while ($my_query->have_posts()) {
+								$my_query->the_post();
+								?>
+								  
+								<?php
+								if ( has_post_thumbnail() ) { ?>
+								
+								  <div class="col_2 rec_cnt  gall_item">
                                     <div>
-
-                                        <a href="fuller-lips-in-a-snap-at-home-and-for-less-than-a-few-bucks--genius-.html"><img alt="Fuller Lips In A Snap, At Home and for Less Than a Few Bucks! GENIUS!" src="images/22/lips%20FEAT%20IMG_600x314.jpg" /></a>
+                                        <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail(); ?></a>
                                     </div>
                                     <div class="left col_btm">
-                                        <h4 class="dots"><span>Fuller Lips In A Snap, At Home and for Less Than a Few Bucks! GENIUS!</span></h4>
+                                        <h4 class="dots"><span><?php the_title_attribute(); ?></span></h4>
                                     </div>
                                     <div class="btn right">
-                                        <a href="fuller-lips-in-a-snap-at-home-and-for-less-than-a-few-bucks--genius-.html">read more</a>
+                                        <a href="<?php the_permalink() ?>">read more</a>
                                     </div>
                                     <div class="clear"></div>
-                                    <p class="txt_fsh">
+                                    <p class="txt_fsh"><?php the_category(', '); ?></p>
+                                </div>							
+								<?php } else { ?>
+									<div class="col_2 rec_cnt  gall_item">
+										<div>
 
-                                        <a href="category/all-the-rage.html">All The Rage</a> ,
+											<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail(); ?></a>
+										</div>
+										<div class="left col_btm">
+											<h4 class="dots"><span><?php the_title_attribute(); ?></span></h4>
+										</div>
+										<div class="btn right">
+											<a href="<?php the_permalink() ?>">read more</a>
+										</div>
+										<div class="clear"></div>
+										<p class="txt_fsh">
 
-                                        <a href="category/fashion---beauty.html">Fashion & Beauty</a>
+											<a href="category/all-the-rage.html">All The Rage</a> ,
 
-
-                                    </p>
-                                </div>
-
-                                <div class="col_2 rec_cnt  gall_item">
-                                    <div>
-
-                                        <a href="adam-scissorhands--saaks-takes-this-boring-black-bikini-to-the-cutting-edge.html"><img alt="Adam 'Scissorhands' Saaks Takes This Boring Black Bikini To The Cutting Edge" src="images/28/swimsuitfeature_600x314.jpg" /></a>
-                                    </div>
-                                    <div class="left col_btm">
-                                        <h4 class="dots"><span>Adam 'Scissorhands' Saaks Takes This Boring Black Bikini To The Cutting Edge</span></h4>
-                                    </div>
-                                    <div class="btn right">
-                                        <a href="adam-scissorhands--saaks-takes-this-boring-black-bikini-to-the-cutting-edge.html">read more</a>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <p class="txt_fsh">
-
-                                        <a href="category/fashion---beauty.html">Fashion & Beauty</a> ,
-
-                                        <a href="category/get-inspired.html">Get Inspired</a>
+											<a href="category/fashion---beauty.html">Fashion & Beauty</a>
 
 
-                                    </p>
-                                </div>
-
-                                <div class="col_2 rec_cnt  gall_item">
-                                    <div>
-
-                                        <a href="epic-surprise-from-son-to-mom.html"><img alt="Epic Surprise from Son to Mom" src="<?php echo get_template_directory_uri(); ?>/images/27/momsonFEATIMG_600x314.jpg" /></a>
-                                    </div>
-                                    <div class="left col_btm">
-                                        <h4 class="dots"><span>Epic Surprise from Son to Mom</span></h4>
-                                    </div>
-                                    <div class="btn right">
-                                        <a href="epic-surprise-from-son-to-mom.html">read more</a>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <p class="txt_fsh">
-
-                                        <a href="category/get-inspired.html">Get Inspired</a>
-
-
-                                    </p>
-                                </div>
-
-                                <div class="col_2 rec_cnt  gall_item">
-                                    <div>
-
-                                        <a href="these-are-too-easy-and-totally-genius-number-three-is-definitely-one-to-remember-.html"><img alt="These Are Too Easy And Totally Genius! Number Three Is Definitely One To Remember!" src="<?php echo get_template_directory_uri(); ?>/images/26/cover102_600x314.jpg" /></a>
-                                    </div>
-                                    <div class="left col_btm">
-                                        <h4 class="dots"><span>These Are Too Easy And Totally Genius! Number Three Is Definitely One To Remember!</span></h4>
-                                    </div>
-                                    <div class="btn right">
-                                        <a href="these-are-too-easy-and-totally-genius-number-three-is-definitely-one-to-remember-.html">read more</a>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <p class="txt_fsh">
-
-                                        <a href="category/get-inspired.html">Get Inspired</a>
-
-
-                                    </p>
-                                </div>
-
-                                <div class="col_2 rec_cnt  gall_item">
-                                    <div>
-
-                                        <a href="paris-is-going-to-rock-it-as-dj-at-summerfest-.html"><img alt="Paris Is Going To Rock It As DJ At Summerfest!" src="<?php echo get_template_directory_uri(); ?>/images/42/ParisDJ_600x314.jpg" /></a>
-                                    </div>
-                                    <div class="left col_btm">
-                                        <h4 class="dots"><span>Paris Is Going To Rock It As DJ At Summerfest!</span></h4>
-                                    </div>
-                                    <div class="btn right">
-                                        <a href="paris-is-going-to-rock-it-as-dj-at-summerfest-.html">read more</a>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <p class="txt_fsh">
-
-                                        <a href="category/all-the-rage.html">All The Rage</a> ,
-
-                                        <a href="category/get-inspired.html">Get Inspired</a> ,
-
-                                        <a href="category/the-sound.html">The Sound</a>
-
-
-                                    </p>
-                                </div>
-
-                                <div class="col_2 rec_cnt  gall_item">
-                                    <div>
-
-                                        <a href="this-beauty-hack-is-genius-.html"><img alt="This Beauty Hack Is GENIUS! " src="<?php echo get_template_directory_uri(); ?>/images/13/red%20lipstick%20feature_600x314.jpg" /></a>
-                                    </div>
-                                    <div class="left col_btm">
-                                        <h4 class="dots"><span>This Beauty Hack Is GENIUS! </span></h4>
-                                    </div>
-                                    <div class="btn right">
-                                        <a href="this-beauty-hack-is-genius-.html">read more</a>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <p class="txt_fsh">
-
-                                        <a href="category/fashion---beauty.html">Fashion & Beauty</a>
-
-
-                                    </p>
-                                </div>
+										</p>
+									</div>	
+								<?php }
+								?>
+								  
+								<?php
+								}
+								//echo '</ul>';
+								}
+								}
+								$post = $backup;
+								wp_reset_query();
+								?>
 
                             </div>
                         </div>
 						
                     </div>
-					
+						
 					 </div>
 					
             </section>
@@ -238,6 +209,6 @@
                 </svg>
             </dialog>
 			
-	<?php endwhile; endif; ?>
+
 
 <?php get_footer(); ?>

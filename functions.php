@@ -102,4 +102,47 @@
 		}
 		return $count.' Views';
 	}
+	
+	
+	function mr_css_and_js_for_slider() {
+		wp_enqueue_style( 'nivoslidercss', get_template_directory_uri() . '/css/nivo-slider.css', '', null );
+		wp_enqueue_script( 'jquery' );
+		wp_enqueue_script( 'nivosliderjs', get_template_directory_uri() . '/js/jquery.nivo.slider.pack.js', array('jquery'), null, true );
+	}
+	 
+	add_action( 'wp_enqueue_scripts', 'mr_css_and_js_for_slider' );
+	
+	add_image_size( 'mrslider', 640, 480, true ); 
+	
+	
+	
+	
+	function revconcept_get_images($post_id) {
+    global $post;
+ 
+     $thumbnail_ID = get_post_thumbnail_id();
+ 
+     $images = get_children( array('post_parent' => $post_id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID') );
+ 
+     if ($images) :
+ 
+         foreach ($images as $attachment_id => $image) :
+ 
+         if ( $image->ID != $thumbnail_ID ) :
+ 
+             $img_alt = get_post_meta($attachment_id, '_wp_attachment_image_alt', true); //alt
+             if ($img_alt == '') : $img_alt = $image->post_title; endif;
+ 
+             $big_array = image_downsize( $image->ID, 'large' );
+             $img_url = $big_array[0];
+ 
+             echo '<li>';
+             echo '<img src="';
+             echo $img_url;
+             echo '" alt="';
+             echo $img_alt;
+             echo '" />';
+             echo '</li><!--end slide-->';
+ 
+     endif; endforeach; endif; }
 ?>

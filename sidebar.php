@@ -64,13 +64,13 @@
                                 <h3>Follow Paris On SOCIAL MEDIA</h3>
                                 <ul class="social">
                                     <li>
-                                        <a href="http://www.facebook.com/" target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
+                                        <a href="http://www.facebook.com/sammisweetheart" target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
                                     </li>
                                     <li>
-                                        <a href="http://twitter.com/" target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
+                                        <a href="http://twitter.com/SammiSweetheart" target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
                                     </li>
                                     <li>
-                                        <a href="http://instagram.com/" target="_blank"><i class="fa fa-instagram fa-lg"></i></a>
+                                        <a href="http://instagram.com/sammisweetheart" target="_blank"><i class="fa fa-instagram fa-lg"></i></a>
                                     </li>
                                 </ul>
                             </div>
