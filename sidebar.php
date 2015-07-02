@@ -13,8 +13,10 @@
 									<li>
 										<div class="right-block-inner">
 											<?php if ( has_post_thumbnail() ) : ?>
-												<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-												<?php the_post_thumbnail(); ?>
+												<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">												
+												<?php //get_the_post_thumbnail('thumb-sidebar');
+													the_post_thumbnail( 'thumb-sidebar' );
+												?>
 												</a>
 											<?php endif; ?> 
 											<h4 class="dots right-title"><a href="<?php the_permalink(); ?>"><span><?php the_title(); ?> </span></a></h4>

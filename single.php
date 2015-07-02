@@ -103,7 +103,7 @@
 								<section>
 									<?php
 									// Get the video URL and put it in the $video variable
-									$videoID = get_post_meta($post->ID, 'video', true);
+									$videoID = get_post_meta($post->ID, 'post-video', true);
 									// Check if there is in fact a video URL
 									if ($videoID) {
 										echo '<figure class="embed">';

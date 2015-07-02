@@ -73,7 +73,13 @@
 	/* ------------------------------------------------------------------------ */
 	/* Post Thumbnails */
 	add_theme_support( 'post-thumbnails' );
-		
+	/*  Image thumbnail sizes
+	/* ------------------------------------ */
+	function wash_thumbnail_setup()
+	{
+		add_image_size( 'thumb-sidebar', 600, 170); // Hard crop to exact dimensions (crops sides or top and bottom)
+	}
+	add_action( 'after_setup_theme', 'wash_thumbnail_setup' );
 	
 	
 	function wpb_set_post_views($postID) {
