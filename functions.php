@@ -82,34 +82,6 @@
 	add_action( 'after_setup_theme', 'wash_thumbnail_setup' );
 	
 	
-	function wpb_set_post_views($postID) {
-		$count_key = 'wpb_post_views_count';
-		$count = get_post_meta($postID, $count_key, true);
-		if($count==''){
-			$count = 0;
-			delete_post_meta($postID, $count_key);
-			add_post_meta($postID, $count_key, '0');
-		}else{
-			$count++;
-			update_post_meta($postID, $count_key, $count);
-		}
-	}
-	//To keep the count accurate, lets get rid of prefetching
-	remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
-
-	
-	function wpb_get_post_views($postID){
-		$count_key = 'wpb_post_views_count';
-		$count = get_post_meta($postID, $count_key, true);
-		if($count==''){
-			delete_post_meta($postID, $count_key);
-			add_post_meta($postID, $count_key, '0');
-			return "0 View";
-		}
-		return $count.' Views';
-	}
-	
-	
 	function mr_css_and_js_for_slider() {
 		wp_enqueue_style( 'nivoslidercss', get_template_directory_uri() . '/css/nivo-slider.css', '', null );
 		wp_enqueue_script( 'jquery' );
@@ -121,34 +93,5 @@
 	add_image_size( 'mrslider', 640, 480, true ); 
 	
 	
-	
-	
-	function revconcept_get_images($post_id) {
-    global $post;
- 
-     $thumbnail_ID = get_post_thumbnail_id();
- 
-     $images = get_children( array('post_parent' => $post_id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID') );
- 
-     if ($images) :
- 
-         foreach ($images as $attachment_id => $image) :
- 
-         if ( $image->ID != $thumbnail_ID ) :
- 
-             $img_alt = get_post_meta($attachment_id, '_wp_attachment_image_alt', true); //alt
-             if ($img_alt == '') : $img_alt = $image->post_title; endif;
- 
-             $big_array = image_downsize( $image->ID, 'large' );
-             $img_url = $big_array[0];
- 
-             echo '<li>';
-             echo '<img src="';
-             echo $img_url;
-             echo '" alt="';
-             echo $img_alt;
-             echo '" />';
-             echo '</li><!--end slide-->';
- 
-     endif; endforeach; endif; }
+		
 ?>

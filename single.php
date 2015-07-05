@@ -3,54 +3,11 @@
                 <div class="padd_content">
 				<?php get_sidebar('right-sidebar'); ?>
 				
-				
-				
-				
-	<?php if (have_posts()) : while (have_posts()) : the_post(wpb_get_post_views(get_the_ID())); ?>
-	 
+	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+	 <!-- mfunc wpb_set_post_views($post_id); --><!-- /mfunc -->
 		<div class=" post">
                         <div>
-						<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-								<div id="player"></div>
-
-								<script>
-									var tag = document.createElement('script');
-
-									tag.src = "https://www.youtube.com/iframe_api";
-									var firstScriptTag = document.getElementsByTagName('script')[0];
-									firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-									var player;
-									function onYouTubeIframeAPIReady() {
-										player = new YT.Player('player', { // "player" id of youtube player container where video comes using youtube iframe api.
-											height: '390',
-											width: '640',
-											videoId: 'M7lc1UVf-VE',
-											events: {
-												'onReady': onPlayerReady, // on ready event below callback function "onPlayerReady" will be called.
-											}
-										});
-									}
-
-									function onPlayerReady(event) { // as youtube player will ready
-										$('#play_vid').click(function() {  // it will wait to click on overlay/image
-											event.target.playVideo();  // as overlay image clicked video plays.
-										});
-									}
-
-									$(document).ready(function() {
-										$('#player').hide(); // on document ready youtube player will be hiden.
-										$('#play_vid').click(function() {  // as user click on overlay image.
-											$('#player').show();    // player will be visible to user 
-											$('#play_vid').hide(); // and overlay image will be hidden.
-										});
-									});
-								</script>
-
-								<div id="player"></div> <!-- Youtube player container -->
-								<img id="play_vid" src="YOUR_IMAGE_PATH" /> <!-- overlay image that comes in front of youtube video. when user click on this, image will be hidden and video plays using youtube api.-->
-
-							
+						
                             <h1><?php the_title(); ?></h1>
 							<?php next_post_link( '<strong>%link</strong>' ); ?>
                             <div class="clear"></div>
@@ -96,7 +53,7 @@
                                     </a>
                                     <div class="like_btn btn-upp">
                                         <span>LIKE THIS VIDEO</span>
-                                        <div class="fb-like" data-href="//www.facebook.com/" data-width="20" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                                        <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
                                     </div>
                                 </div>
 								
@@ -132,10 +89,8 @@
                             </div>
 								
 
-                            <div class="postbox">
-                               
-                                <div class="fb-comments" data-href="<?php the_permalink(); ?>" data-numposts="5" data-colorscheme="light" data-width="100%"></div>
-
+                            <div class="postbox">                               
+                                <div class="fb-comments" data-href="http://developers.facebook.com/docs/plugins/comments/" data-numposts="5"></div>
                             </div>
 							
 							

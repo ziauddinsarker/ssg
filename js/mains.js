@@ -4540,10 +4540,6 @@ $(document).ready(function() {
             vertical: !0
         })
     }),
-    function(e, t, n) {
-        var i, r = e.getElementsByTagName(t)[0];
-        e.getElementById(n) || (i = e.createElement(t), i.id = n, i.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=904485686257334&version=v2.3", r.parentNode.insertBefore(i, r))
-    }(document, "script", "facebook-jssdk"),
     function(e, t, n, i, r, a, s) {
         e.GoogleAnalyticsObject = r, e[r] = e[r] || function() {
             (e[r].q = e[r].q || []).push(arguments)
@@ -4556,4 +4552,4 @@ $(document).ready(function() {
     }(document, "readyState", "add", "remove", "EventListener", "DOMContentLoaded");
 	
 
-	
+

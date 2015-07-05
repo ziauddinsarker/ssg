@@ -52,7 +52,7 @@ Version: 1
     transform: translate(0px, 0px);
 }
 h2, h4 {
-    font-family: ProximaNova-Reg;
+    font-family: proximanova-reg-webfont;
 }
 .fa-lg {
     font-size: 1.33333em;
@@ -1725,7 +1725,7 @@ figure, sub, sup {
     content: "";
 }
 html {
-    font-family: ProximaNova-Reg;
+    font-family: proximanova-reg-webfont;
 }
 body {
     margin: 0;
@@ -1844,9 +1844,13 @@ table {
 
 
 @font-face {
-    font-family: "ProximaNova-Reg";
-    src: url("./../fonts/ProximaNova-Reg.ttf") format("truetype")
-}
+    font-family: "proximanova-reg-webfont";
+    src: url("fonts/proximanova-reg-webfont.eot?#iefix") format("embedded-opentype"), 
+	url("fonts/proximanova-reg-webfont.woff") format("woff"), 
+	url("fonts/proximanova-reg-webfont.ttf") format("truetype"), 
+	url("fonts/proximanova-reg-webfont.svg#proximanova-reg-webfont") format("svg");
+} 
+
 @font-face {
     font-family: "Raleway-Bold";
     src: url("fonts/Raleway-Bold.eot?#iefix") format("embedded-opentype"), url("fonts/Raleway-Bold.woff") format("woff"), url("fonts/Raleway-Bold.ttf") format("truetype"), url("fonts/Raleway-Bold.svg#Raleway-Bold") format("svg");
@@ -2253,7 +2257,7 @@ figure.embed {
 body {
     background: #000 url("images/bg_body.png") no-repeat scroll center top / cover ;
     color: #282828;
-    font-family: ProximaNova-Reg;
+    font-family: proximanova-reg-webfont;
     font-size: 14px;
 }
 #wrapper {
